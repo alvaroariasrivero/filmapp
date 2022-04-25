@@ -1,10 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import axios from 'axios';
 import { useSearchParams } from "react-router-dom";
 import { useDataLoader } from 'react-use-data-loader';
 
 const filmDetails = async(imdbId) =>{
-  console.log('esto es id', imdbId)
   try {
     const res = await axios.get(`https://omdbapi.com/?i=${imdbId}&plot=full&apikey=${process.env.REACT_APP_API_KEY}`)
     const dataFilm = {
@@ -28,11 +27,11 @@ const filmDetails = async(imdbId) =>{
 const FilmsDetail = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { data, loading } = useDataLoader(filmDetails, searchParams.get('imdb'))
-  return <div>
+  return <Fragment>
     {loading 
     ? <p>Loading</p>
     :<p>{data.plot}</p>}
-  </div>;
+  </Fragment>;
 };
 
 export default FilmsDetail;

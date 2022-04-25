@@ -57,7 +57,7 @@ const FilmsList = () => {
     setTitle(film)
   }
 
-  return <div>
+  return <Fragment>
           <form onSubmit={handleSubmit}>
             <input type="text" placeholder="Film..." name='film'/>
             <input type="submit"/>
@@ -66,7 +66,7 @@ const FilmsList = () => {
           <button onClick={prevPage}>Prev</button>
           <p>{currentPage}</p>
           <button onClick={nextPage}>Next</button>
-        </div>;
+        </Fragment>;
 };
 
 export default FilmsList;
