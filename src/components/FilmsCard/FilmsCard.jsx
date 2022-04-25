@@ -5,9 +5,9 @@ const FilmsCard = ({film}) => {
 
   const {title, year, poster} = film;
 
-  if(poster == 'N/A'){
+  if(poster === 'N/A'){
     return <div>
-    <img src={image} alt="image" />
+    <img src={image} alt="imageNotAvailable" />
     <p>{title}</p>
     <p>{year}</p>
   </div>;

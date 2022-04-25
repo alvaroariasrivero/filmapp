@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 import FilmsCard from '../FilmsCard'
 
 const FilmsList = () => {
@@ -23,9 +24,10 @@ const FilmsList = () => {
             'title': element.Title,
             'year': element.Year,
             'poster': element.Poster,
-            'imdb': element.imdbID
+            'imdbId': element.imdbID
           }
         })
+        console.log(filmsArray)
         setFilms(filmsArray)
       } catch (error) {
         console.log('error', error)
@@ -34,7 +36,7 @@ const FilmsList = () => {
     fetchFilms()
   }, [title, currentPage]);
 
-  const paintCards = () => films.map((film, i) => <FilmsCard key={i} film={film}/>)
+  const paintCards = () => films.map((film, i) => <Link to={`/details/?imdb=${film.imdbId}`} key={i}><FilmsCard film={film}/></Link>)
 
   const nextPage = () => {
     if(currentPage !== Math.ceil(totalFilms/filmsPerPage) && totalFilms/filmsPerPage >= 1){
