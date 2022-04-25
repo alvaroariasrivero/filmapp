@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import { Link } from "react-router-dom";
 import FilmsCard from '../FilmsCard'
 
@@ -10,13 +10,13 @@ const FilmsList = () => {
   const[films, setFilms] = useState([])
   const[totalFilms, setTotalFilms] = useState()
   const [filmsPerPage] = useState(10);
+  // const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchFilms(){
       try {
         const res = await axios.get(`https://omdbapi.com/?s=${title}&type=movie&page=${currentPage}&apikey=${process.env.REACT_APP_API_KEY}`);
         const json = res.data;
-        console.log(json);
         setTotalFilms(json.totalResults)
         const search = json.Search
         const filmsArray = search.map(element => {
@@ -27,16 +27,16 @@ const FilmsList = () => {
             'imdbId': element.imdbID
           }
         })
-        console.log(filmsArray)
         setFilms(filmsArray)
       } catch (error) {
         console.log('error', error)
       }
     }
     fetchFilms()
+    // navigate(`?title=${title}?currentPage=${currentPage}`)
   }, [title, currentPage]);
 
-  const paintCards = () => films.map((film, i) => <Link to={`/details/?imdb=${film.imdbId}`} key={i}><FilmsCard film={film}/></Link>)
+  const paintCards = () => films.map((film, i) => <Link to={`/details/?imdb=${film.imdbId}`} target='_blank' key={i}><FilmsCard film={film}/></Link>)
 
   const nextPage = () => {
     if(currentPage !== Math.ceil(totalFilms/filmsPerPage) && totalFilms/filmsPerPage >= 1){
@@ -50,7 +50,7 @@ const FilmsList = () => {
     }
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const film = event.target.elements.film.value
     setCurrentPage(1)
