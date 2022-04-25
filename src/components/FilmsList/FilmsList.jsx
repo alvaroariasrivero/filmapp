@@ -1,0 +1,69 @@
+import axios from "axios";
+import React, {useState, useEffect} from "react";
+import FilmsCard from '../FilmsCard'
+
+const FilmsList = () => {
+
+  const[title, setTitle] = useState('')
+  const[currentPage, setCurrentPage] = useState(1)
+  const[films, setFilms] = useState([])
+  const[totalFilms, setTotalFilms] = useState()
+  const [filmsPerPage] = useState(10);
+
+  useEffect(() => {
+    async function fetchFilms(){
+      try {
+        const res = await axios.get(`https://omdbapi.com/?s=${title}&type=movie&page=${currentPage}&apikey=${process.env.REACT_APP_API_KEY}`);
+        const json = res.data;
+        console.log(json);
+        setTotalFilms(json.totalResults)
+        const search = json.Search
+        const filmsArray = search.map(element => {
+          return {
+            'title': element.Title,
+            'year': element.Year,
+            'poster': element.Poster,
+            'imdb': element.imdbID
+          }
+        })
+        setFilms(filmsArray)
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+    fetchFilms()
+  }, [title, currentPage]);
+
+  const paintCards = () => films.map((film, i) => <FilmsCard key={i} film={film}/>)
+
+  const nextPage = () => {
+    if(currentPage !== Math.ceil(totalFilms/filmsPerPage) && totalFilms/filmsPerPage >= 1){
+      setCurrentPage(currentPage+1)
+    }
+  }
+
+  const prevPage = () => {
+    if(currentPage !==1) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const film = event.target.elements.film.value
+    setTitle(film)
+  }
+
+  return <div>
+          <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="Film..." name='film'/>
+            <input type="submit"/>
+          </form>
+          <div>{paintCards()}</div>
+          <button onClick={prevPage}>Prev</button>
+          <p>{currentPage}</p>
+          <button onClick={nextPage}>Next</button>
+        </div>;
+};
+
+export default FilmsList;
