@@ -51,6 +51,7 @@ const FilmsList = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const film = event.target.elements.film.value
+    setCurrentPage(1)
     setTitle(film)
   }
 
