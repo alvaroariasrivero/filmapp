@@ -35,10 +35,11 @@ const FilmsDetail = () => {
           <img src={data.poster} alt='film_poster' className="poster__content"></img>
         </div>
         <div className="info">
-          <h3>{data.title}</h3>
+          <h3 className="title">{data.title}</h3>
           <p>{data.plot}</p>
           <p>Cast: {data.actors}</p>
           <p>Genre: {data.genre}</p>
+          <p>Writer: {data.writer}</p>
         </div>
       </section>)}
   </Fragment>;
