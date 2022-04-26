@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import axios from 'axios';
 import { useSearchParams } from "react-router-dom";
 import { useDataLoader } from 'react-use-data-loader';
+// import loader from 'https://i.gifer.com/74H8.gif';
 
 const filmDetails = async(imdbId) =>{
   try {
@@ -17,7 +18,6 @@ const filmDetails = async(imdbId) =>{
       'runtime': res.data.Runtime,
       'writer': res.data.Writer
     }
-    console.log(dataFilm)
     return dataFilm
   } catch (error) {
     console.log('Error', error);
@@ -25,12 +25,22 @@ const filmDetails = async(imdbId) =>{
 }
 
 const FilmsDetail = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { data, loading } = useDataLoader(filmDetails, searchParams.get('imdb'))
   return <Fragment>
     {loading 
-    ? <p>Loading</p>
-    :<p>{data.plot}</p>}
+    ? <img src='https://i.gifer.com/JVX7.gif' alt="Loading..."></img>
+    :(<section className="details">
+        <div className="poster">
+          <img src={data.poster} alt='film_poster' className="poster__content"></img>
+        </div>
+        <div className="info">
+          <h3>{data.title}</h3>
+          <p>{data.plot}</p>
+          <p>Cast: {data.actors}</p>
+          <p>Genre: {data.genre}</p>
+        </div>
+      </section>)}
   </Fragment>;
 };
 

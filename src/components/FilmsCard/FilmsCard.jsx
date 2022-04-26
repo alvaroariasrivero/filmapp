@@ -12,13 +12,19 @@ const FilmsCard = ({film}) => {
 
   if(poster === 'N/A'){
     return <div>
-    <img src={image} alt="imageNotAvailable" />
-    <p>{title}</p>
-    <p>{year}</p>
+      <Card sx={{ width: 300, height: 300, margin: 1 }}>
+      <CardActionArea>
+        <CardMedia component="img" height="140" image={image} alt="film_poster"/>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">{title}</Typography>
+          <Typography variant="body2" color="text.secondary">{year}</Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   </div>;
   } else {
     return <div>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 300, height: 300, margin: 1 }}>
       <CardActionArea>
         <CardMedia component="img" height="140" image={poster} alt="film_poster"/>
         <CardContent>
@@ -28,24 +34,7 @@ const FilmsCard = ({film}) => {
       </CardActionArea>
     </Card>
   </div>;
-  }
-
-  // <Card sx={{ maxWidth: 345 }}>
-  //         <CardMedia component="img" height="140" image={image}alt="cake"/>
-  //         <CardContent>
-  //         <Typography gutterBottom variant="h5" component="div">
-  //             {name}
-  //         </Typography>
-  //         <Typography variant="body2" color="text.secondary">
-  //           Precio:{price}€
-  //         </Typography>
-  //         </CardContent>
-  //         <CardActions>
-  //           <Button onClick={this.props.remove}>Borrar</Button>
-  //           <Button size="small">❤</Button>
-  //         </CardActions>
-  //       </Card>
-  
+  }  
 };
 
 export default FilmsCard;

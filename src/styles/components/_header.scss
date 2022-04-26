@@ -1,0 +1,10 @@
+@import '../utils/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+header{
+    background: rgb(248,212,51);
+    background: linear-gradient(90deg, rgba(248,212,51,1) 16%, rgba(232,82,24,1) 58%);
+    color: $background-form;
+    font-size: 4rem;
+    font-family: 'Allerta Stencil', sans-serif;
+}

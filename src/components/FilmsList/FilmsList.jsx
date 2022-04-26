@@ -2,6 +2,7 @@ import axios from "axios";
 import React, {useState, useEffect, Fragment} from "react";
 import { Link } from "react-router-dom";
 import FilmsCard from '../FilmsCard'
+// import './FilmsList.css'
 
 const FilmsList = () => {
 
@@ -41,12 +42,20 @@ const FilmsList = () => {
   const nextPage = () => {
     if(currentPage !== Math.ceil(totalFilms/filmsPerPage) && totalFilms/filmsPerPage >= 1){
       setCurrentPage(currentPage+1)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
   }
 
   const prevPage = () => {
     if(currentPage !==1) {
       setCurrentPage(currentPage - 1)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
   }
 
@@ -59,13 +68,15 @@ const FilmsList = () => {
 
   return <Fragment>
           <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Film..." name='film'/>
+            <input type="text" placeholder="Film title..." name='film'/>
             <input type="submit"/>
           </form>
-          <div>{paintCards()}</div>
-          <button onClick={prevPage}>Prev</button>
-          <p>{currentPage}</p>
-          <button onClick={nextPage}>Next</button>
+          <div className="container">{paintCards()}</div>
+          <div className="pagination">
+            <button onClick={prevPage} className='pagination__button'>Prev</button>
+            <p className="current">{currentPage}</p>
+            <button onClick={nextPage} className='pagination__button'>Next</button>
+          </div>
         </Fragment>;
 };
 
