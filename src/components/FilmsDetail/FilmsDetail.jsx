@@ -36,6 +36,7 @@ const FilmsDetail = () => {
         </div>
         <div className="info">
           <h3 className="title">{data.title}</h3>
+          <p>Released: {data.released}</p>
           <p>{data.plot}</p>
           <p>Cast: {data.actors}</p>
           <p>Genre: {data.genre}</p>
