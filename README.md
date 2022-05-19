@@ -11,6 +11,8 @@ A complete catalogue of films searching by the title and navigation to a detaile
 - react-router-dom
 - sass
 - material ui
+- react-spinners
+- react-use-data-loader
 
 ## Install
 ```javascript
