@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState, useEffect, Fragment} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import FilmsCard from '../FilmsCard'
 // import './FilmsList.css'
@@ -66,7 +66,7 @@ const FilmsList = () => {
     setTitle(film)
   }
 
-  return <Fragment>
+  return <div className="films-list">
           <form onSubmit={handleSubmit}>
             <input type="text" placeholder="Film title..." name='film'/>
             <input type="submit"/>
@@ -77,7 +77,7 @@ const FilmsList = () => {
             <p className="current">{currentPage}</p>
             <button onClick={nextPage} className='pagination__button'>Next</button>
           </div>
-        </Fragment>;
+        </div>;
 };
 
 export default FilmsList;

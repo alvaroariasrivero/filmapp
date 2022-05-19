@@ -4,10 +4,12 @@
 .App {
     text-align: center;
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 100vh;
-    // max-height: max-content;
-    padding-bottom: 2em;
-    position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 .App-header {

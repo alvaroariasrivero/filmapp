@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import axios from 'axios';
 import { useSearchParams } from "react-router-dom";
 import { useDataLoader } from 'react-use-data-loader';
-// import loader from 'https://i.gifer.com/74H8.gif';
+import { CircleLoader } from "react-spinners";
 
 const filmDetails = async(imdbId) =>{
   try {
@@ -29,7 +29,7 @@ const FilmsDetail = () => {
   const { data, loading } = useDataLoader(filmDetails, searchParams.get('imdb'))
   return <Fragment>
     {loading 
-    ? <img src='https://i.gifer.com/JVX7.gif' alt="Loading..."></img>
+    ? <CircleLoader color='rgba(248,212,51,1)' size={100}/>
     :(<section className="details">
         <div className="poster">
           <img src={data.poster} alt='film_poster' className="poster__content"></img>

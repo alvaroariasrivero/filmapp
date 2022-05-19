@@ -4,8 +4,5 @@ footer{
     width: 100%;
     background: rgb(248,212,51);
     background: linear-gradient(90deg, rgba(248,212,51,1) 16%, rgba(232,82,24,1) 58%);
-    color: $background-form;
-    bottom: 0;
-    position: absolute;
-    // margin-top: 1rem;
+    color: $background-form;  
 }
