@@ -36,11 +36,11 @@ const FilmsDetail = () => {
         </div>
         <div className="info">
           <h3 className="title">{data.title}</h3>
-          <p>Released: {data.released}</p>
+          <p><b>Released:</b> {data.released}</p>
           <p>{data.plot}</p>
-          <p>Cast: {data.actors}</p>
-          <p>Genre: {data.genre}</p>
-          <p>Writer: {data.writer}</p>
+          <p><b>Cast:</b> {data.actors}</p>
+          <p><b>Genre:</b> {data.genre}</p>
+          <p><b>Writer:</b> {data.writer}</p>
         </div>
       </section>)}
   </Fragment>;
